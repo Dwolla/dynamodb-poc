@@ -1,0 +1,35 @@
+{
+  "name": "dynamodb-poc",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "sls webpack",
+    "clean": "skripts src scripts --pattern '*.js'",
+    "deploy": "npm test && sls deploy",
+    "format": "skripts prettier",
+    "invoke": "ENVIRONMENT=local sls invoke local --function func --path ./test/putPartner.json",
+    "lint": "skripts tslint",
+    "jest": "ENVIRONMENT=test skripts jest",
+    "test": "npm run lint && npm run jest && sls package",
+    "watch": "npm run jest -- --watch"
+  },
+  "dependencies": {
+    "@therockstorm/utils": "^3.0.11",
+    "source-map-support": "^0.5.13",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "@types/uuid": "^3.4.5",
+    "aws-sdk": "^2.518.0",
+    "husky": "^3.0.4",
+    "serverless-pseudo-parameters": "^2.4.0",
+    "skripts": "0.0.16",
+    "tslint": "^5.19.0",
+    "typescript": "^3.5.3"
+  },
+  "private": true,
+  "husky": {
+    "hooks": {
+      "pre-commit": "skripts lint-staged"
+    }
+  }
+}
